@@ -6,16 +6,14 @@
 import pandas as pd
 
 #read excel sheet after it's been uploaded to this python file's location
-df = pd.read_excel(r'C:\Users\mua11\PycharmProjects\Think-No-Think-2\sample.xlsx', sheet_name='Sheet1')
-#print(df)
+df = pd.read_excel(r'location\sample.xlsx', sheet_name='Sheet1')
 
-#get the index of the SP and IP column
+#get the index of the SP and IP columns so they can be read by the code
 sp_index = df.columns.get_loc('SP')
 ip_index = df.columns.get_loc('IP')
 
 crit = df.iloc[71:137, ip_index + 1]
 crit_response = df.iloc[71:137, ip_index + 2]
-#print(crit)
 
 #drop grey rows = filler/practice pairs
 crit1 = crit.drop(71)
@@ -74,7 +72,8 @@ IP_data = pd.Series([1 if response == 1 else 0 for response in df.iloc[:48, ip_i
 CR_SP_IP = pd.DataFrame({'criterion': cr_data, 'SP': SP_data, 'IP':IP_data})
 
 
-#introduce counterbalance pattern for T, NT, and BL
+#introduce counterbalance pattern for A = T, NT, and BL. For B, it will be TN, BL, and T.
+## for C, it is BL, T, and NT.
 
 think_A = ['UNCLE',
 'ROACH',
@@ -140,11 +139,12 @@ for word, row in CR_SP_IP.iterrows():
     if word not in baseline_A:
         baseline_A_df = baseline_A_df.drop(word)
 
-#print(think_A_df)
-#print(no_think_A_df)
-#print(baseline_A_df)
 
-
+# a = learned and recalled.
+## b = not learned and recalled.
+### c = learned and not recalled.
+#### d = a + b
+        
 def answer_a_b_c_d(df, name):
     count_dict = {}
 
@@ -223,8 +223,6 @@ def answer_a_b_c_d(df, name):
 results_think = answer_a_b_c_d(think_A_df, 'THINK')
 results_no_think = answer_a_b_c_d(no_think_A_df, 'NO-THINK')
 results_baseline = answer_a_b_c_d(baseline_A_df, 'Baseline')
-
-
 
 
 print(results_think)

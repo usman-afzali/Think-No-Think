@@ -6,7 +6,9 @@
 #importing the needed package. pandas should already be installed on your machine.
 import pandas as pd
 
-#read excel sheet after it's been uploaded to this python file's location
+#read the excel sheet after it's been uploaded to this python file's location.
+#a sample Excel sheet (sample.xlsx) is provided in this repository.
+
 df = pd.read_excel(r'folder location from computer\sample.xlsx', sheet_name='Sheet1')
 
 #get the index of the SP and IP columns so they can be read by the code

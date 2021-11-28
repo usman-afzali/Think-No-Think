@@ -1,6 +1,7 @@
 #22 Jul 2021
 # Code written by Usman Afzali with extensive help from Abdullah Naeem
 ## Use of this code: post-experimental data processing of TNT experiment
+## package needed: pandas. you may also need to pip install openpyxl if you are using PyCharm.
 
 #importing the needed package. pandas should already be installed on your machine.
 import pandas as pd
